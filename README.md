@@ -11,15 +11,22 @@ Windows 2000 should have DI too!
 
 using PoorMans.DI;
 
+// Create a service collection
 var services = new ServiceCollection();
 
+// Register services
 services
   .AddSingleton<ILoggerService, LoggerService>()
   .AddSingleton<IDownloadService, DownloadService>()
   .AddSingleton<IUploadService, UploadService>()
-  .AddSingleton<IMainService, MainService>();
+  .AddTransient<IMainService, MainService>();
 
-services
+// Create a service provider
+var provider = services.BuildServiceProvider();
+
+// Request and call a service
+// All the dependencies will be resolved automatically
+provider
   .GetService<IMainService>()
   .Run();
 
