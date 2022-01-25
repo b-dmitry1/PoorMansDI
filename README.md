@@ -7,7 +7,7 @@ Windows 2000 should have DI too!
 
 ### Example
 
-```
+```csharp
 
 using PoorMans.DI;
 
