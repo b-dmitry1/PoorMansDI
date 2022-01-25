@@ -15,13 +15,15 @@ class Program
 			.AddSingleton<ILoggerService, LoggerService>()
 			.AddSingleton<IOtherService, OtherService>()
 			.AddSingleton<IPropService, PropService>()
-			.AddSingleton<IMainService, MainService>();
+			.AddTransient<IMainService, MainService>();
+
+		var provider = services.BuildServiceProvider();
 
 		Console.WriteLine("Running MainService");
-		services.GetService<IMainService>().Run();
+		provider.GetService<IMainService>().Run();
 
 		Console.WriteLine("Running MainService again");
-		services.GetService<IMainService>().Run();
+		provider.GetService<IMainService>().Run();
 
 		Console.ReadKey();
 	}
